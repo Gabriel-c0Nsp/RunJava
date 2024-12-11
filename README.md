@@ -1,4 +1,5 @@
 # RunJava
+
 ## Description
 
 `RunJava.sh` is a shell script designed to simplify the process of compiling and executing [Java](https://docs.oracle.com/en/java/) projects directly from the terminal. It searches for ***Java*** source files or packages, compiles them if necessary, and executes the main Java class.
@@ -16,14 +17,15 @@
     ```
 
 3. Make sure the script has executable permissions. If not, run the following command:
-   ```bash
-   chmod +x RunJava.sh
-   ```
+    ```bash
+    chmod +x RunJava.sh
+    ```
 
-4. Since this script actually navigate through your directories, you need to run it using source command:
-      ```bash
-      source ./RunJava.sh
-      ```
+4. Since this script navigates through your directories, you need to run it using the source command:
+    ```bash
+    source ./RunJava.sh
+    ```
+
 ## Recommendations
 You can easily run this script by simply just typing `runjava` (or whatever you want) in your terminal, by setting aliases to your `.bashrc` or `.bash_profile`.
 

@@ -39,7 +39,7 @@ Finally, you can add the following instructions to your `.bashrc` or `.zshrc` fi
 
    ```bash
    export PATH=$PATH:{current_directory}/RunJava/
-   alias runjava='source ~/RunJava/RunJava.sh'
+   alias runjava='source {current_directory}/RunJava/RunJava.sh'
    ```
 Don't forget to change the path in the `export PATH=...` command as needed.
 

@@ -18,12 +18,12 @@
 
 3. Make sure the script has executable permissions. If not, run the following command:
     ```bash
-    chmod +x RunJava.sh
+    chmod +x runjava.sh
     ```
 
-4. Since this script navigates through your directories, you need to run it using the source command:
+4. Now you can execute the script using the following command:
     ```bash
-    source ./RunJava.sh
+    ./runjava.sh
     ```
 
 ## Recommendations
@@ -39,7 +39,7 @@ Finally, you can add the following instructions to your `.bashrc` or `.zshrc` fi
 
    ```bash
    export PATH=$PATH:{current_directory}/RunJava/
-   alias runjava='source {current_directory}/RunJava/RunJava.sh'
+   alias runjava='{current_directory}/RunJava/runjava.sh'
    ```
 Don't forget to change the path in the `export PATH=...` command as needed.
 

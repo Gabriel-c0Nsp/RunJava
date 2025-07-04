@@ -3,18 +3,48 @@
 ########################################################################
 #                                                                      #
 # RunJava.sh: Compile and execute Java project                         #
-#                                                                      # 
-# Author: Gabriel Silva Aires (gabrielsilvaaires@gmail.com)            #    
-# Date: 03/09/2023                                                     # 
-#                                                                      #      
+#                                                                      #
+# Author: Gabriel Silva Aires (gabrielsilvaaires@gmail.com)            #
+# Date: 03/09/2023                                                     #
+#                                                                      #
 # Description: Search for packages or files.java, compile and execute  #
 # Java code from the terminal.                                         #
-#                                                                      #        
-# Example: RunJava.sh | runjava (alias)                                #
-#                                                                      #     
+#                                                                      #
+# use: runjava.sh
+#                                                                      #
 ########################################################################
 
-clear
+VERSION="1.0"
+SCRIPT_NAME=$(basename "$0")
+
+# simple flags the user may want to use (-h -v)
+case "$1" in
+  -h | --help)
+    echo "
+    RunJava is a simple command-line script to run Java programs in
+    widely used formats. It's especially useful for integration with text
+    editors like Neovim, which are not full-featured Java IDEs.
+
+    Usage: source $SCRIPT_NAME [-h | -v]
+
+    Version: $VERSION"
+    exit 0
+  ;;
+  -v | --version)
+    echo "v$VERSION"
+    exit 0
+  ;;
+  *)
+    if test -n "$1"
+    then
+    echo "Invalid option. Try the help command for more usage information!"
+    echo "Type: source $SCRIPT_NAME --help"
+    exit 1
+    fi
+  ;;
+esac
+
+clear # TODO: make this optional using flags
 
 type_of_project=""
 current_path=$(pwd)
@@ -26,14 +56,14 @@ go_to_source() {
     if [[ -d "src" ]]; then
       cd "src"
       found=1
-    else 
+    else
       if [[ "$(pwd)" != "$HOME" ]]; then
         cd ..
       else # then there is no src folder in the project
         break
       fi
     fi
-  done 
+  done
 }
 
 go_to_root() {
@@ -42,14 +72,14 @@ go_to_root() {
   while [[ $found -ne 1 ]]; do
     if [[ -d "src" ]]; then
       found=1
-    else 
+    else
       if [[ "$(pwd)" != "$HOME" ]]; then
         cd ..
       else # then there is no src folder in the project
         break
       fi
     fi
-  done 
+  done
 }
 
 get_type_of_project() {
@@ -66,10 +96,10 @@ get_type_of_project() {
         type_of_project="with_package"
       fi
       found=1
-    else 
+    else
       if [[ "$(pwd)" != "$HOME" ]]; then
         cd ..
-      else 
+      else
         cd $current_path
         if find . -maxdepth 1 -type f -name "*.java" | grep -q .; then # check if there is any .java file
             type_of_project="no_package"
@@ -77,7 +107,7 @@ get_type_of_project() {
         break
       fi
     fi
-  done 
+  done
 
   # check if type_of_project is empty
   if [[ -z $type_of_project ]]; then
@@ -111,7 +141,7 @@ fi
 # check if it's a SpringBoot project
 if [[ $type_of_project == "maven" ]]; then
   go_to_root
-  if grep -q "spring-boot-starter-parent" pom.xml; then 
+  if grep -q "spring-boot-starter-parent" pom.xml; then
     type_of_project="spring"
   else
     type_of_project="maven"
@@ -148,7 +178,7 @@ maven_run() {
 }
 
 one_file_run() {
-  java *.java 
+  java *.java
 }
 
 multiple_files_run() {
@@ -161,7 +191,7 @@ multiple_files_run() {
     files+=("$file_name")
   done
 
-  # menu for the user 
+  # menu for the user
   echo "Choose the file you want to execute: "
   for file_name in "${files[@]}"; do
     echo "$i) $file_name"
@@ -196,6 +226,7 @@ find_main() {
 
 simple_source_run() {
   go_to_root
+  mkdir -p bin
 
   main_file=$(find_main)
 
@@ -205,6 +236,7 @@ simple_source_run() {
 
 with_package_run() {
   go_to_root
+  mkdir -p bin
 
   local compile_command="javac -d bin "
 

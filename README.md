@@ -27,7 +27,7 @@
     ```
 
 ## Recommendations
-You can easily run this script by simply just typing `runjava` (or whatever you want) in your terminal, by setting aliases to your `.bashrc` or `.bash_profile`.
+You can easily run this script by simply just typing `runjava` (or whatever you want) in your terminal, by setting an alias to your `.bashrc` or `.bash_profile`. If you're not using bash, you can search how to create aliases for you're specific shell.
 
 First, you need to identify the current directory of the repository. This can be achieved with the following command:
    ```bash
@@ -39,7 +39,7 @@ Finally, you can add the following instructions to your `.bashrc` or `.zshrc` fi
 
    ```bash
    export PATH=$PATH:{current_directory}/RunJava/
-   alias runjava='{current_directory}/RunJava/runjava.sh'
+   alias runjava='runjava.sh'
    ```
 Don't forget to change the path in the `export PATH=...` command as needed.
 

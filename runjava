@@ -2,7 +2,7 @@
 
 ########################################################################
 #                                                                      #
-# RunJava.sh: Compile and execute Java project                         #
+# runjava: Compile and execute Java project                            # 
 #                                                                      #
 # Author: Gabriel Silva Aires (gabrielsilvaaires@gmail.com)            #
 # Date: 03/09/2023                                                     #
@@ -10,7 +10,7 @@
 # Description: Search for packages or files.java, compile and execute  #
 # Java code from the terminal.                                         #
 #                                                                      #
-# use: runjava.sh
+# use: runjava                                                         #
 #                                                                      #
 ########################################################################
 
@@ -43,8 +43,6 @@ case "$1" in
     fi
   ;;
 esac
-
-clear # TODO: make this optional using flags
 
 type_of_project=""
 current_path=$(pwd)

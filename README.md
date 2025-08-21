@@ -18,29 +18,19 @@
 
 3. Make sure the script has executable permissions. If not, run the following command:
     ```bash
-    chmod +x runjava.sh
+    chmod +x runjava
     ```
 
 4. Now you can execute the script using the following command:
     ```bash
-    ./runjava.sh
+    ./runjava
     ```
 
 ## Recommendations
-You can easily run this script by simply just typing `runjava` (or whatever you want) in your terminal, by setting an alias to your `.bashrc` or `.bash_profile`. If you're not using bash, you can search how to create aliases for you're specific shell.
+You can easily run this script by simply just typing `runjava` (without the full path to it) from anywhere in your terminal, by copying the script to a directory in your `$PATH`, such as `/usr/local/bin`.
 
-First, you need to identify the current directory of the repository. This can be achieved with the following command:
-   ```bash
-   pwd
-   ```
-This output is important for the following process. The output of the `pwd` command is personal and will be referred in this documentation as `{current_directory}` for generalization purposes.
+```bash
+sudo cp runjava /usr/local/bin
+```
 
-Finally, you can add the following instructions to your `.bashrc` or `.zshrc` file:
-
-   ```bash
-   export PATH=$PATH:{current_directory}/RunJava/
-   alias runjava='runjava.sh'
-   ```
-Don't forget to change the path in the `export PATH=...` command as needed.
-
-Now you can try the `runjava` command anywhere in your terminal and check the result.
+Now you can try the `runjava` command anywhere on your terminal and check the result.
